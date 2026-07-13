@@ -14,7 +14,7 @@ const studioSocials = data.studioSocials || [];
     <canvas id="interactive-dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-100"></canvas>
 
     <section class="relative z-20 pt-32 pb-10 px-4 sm:px-6 max-w-4xl mx-auto text-center md:text-left">
-      <span class="text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-3">// GELECEĞİ BİRLİKTE İNŞA EDELİM</span>
+      <span class="text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-3">// GELECEĞİ BİRLİKTE INŞA EDELİM</span>
       <h1 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase leading-none text-zinc-900 dark:text-white mb-6">
         0bıt’TE KARİYER
       </h1>
@@ -30,26 +30,31 @@ const studioSocials = data.studioSocials || [];
     </section>
 
     <section class="relative z-20 pb-24 px-4 sm:px-6 max-w-4xl mx-auto">
-      <div class="bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-900 rounded-2xl p-5 sm:p-10 shadow-xl backdrop-blur-sm">
-        <h3 class="text-base sm:text-xl font-black tracking-tight text-zinc-900 dark:text-white uppercase mb-6 sm:mb-8">// GENEL BAŞVURU FORMU</h3>
+      
+      <h3 class="text-xs sm:text-sm font-black tracking-widest text-zinc-400 dark:text-zinc-500 uppercase mb-6 block">// GENEL BAŞVURU FORMU</h3>
+      
+      <form id="careers-form" novalidate class="space-y-5 sm:space-y-6">
         
-        <form class="space-y-5 sm:space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-            <div class="flex flex-col gap-2">
+        <div class="flex flex-col md:flex-row gap-5">
+          
+          <div class="w-full md:w-3/5 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            
+            <div class="form-group bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl border border-zinc-200/80 dark:border-zinc-900 shadow-lg flex flex-col gap-2 justify-between transition-all duration-300">
               <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Adınız Soyadınız *</label>
-              <input type="text" required class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition" placeholder="John Doe" />
+              <input type="text" name="fullname" required class="w-full px-3 py-2.5 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition shadow-sm" placeholder="John Doe" />
+              <span class="error-msg text-[10px] text-red-500 font-bold tracking-wide uppercase hidden mt-1">// Bu alan boş bırakılamaz</span>
             </div>
-            <div class="flex flex-col gap-2">
-              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">E-Posta Adresiniz *</label>
-              <input type="email" required class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition" placeholder="johndoe@example.com" />
-            </div>
-          </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-            <div class="flex flex-col gap-2 relative">
+            <div class="form-group bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl border border-zinc-200/80 dark:border-zinc-900 shadow-lg flex flex-col gap-2 justify-between transition-all duration-300">
+              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">E-Posta Adresiniz *</label>
+              <input type="email" name="email" required class="w-full px-3 py-2.5 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition shadow-sm" placeholder="johndoe@example.com" />
+              <span class="error-msg text-[10px] text-red-500 font-bold tracking-wide uppercase hidden mt-1">// Geçerli bir e-posta girin</span>
+            </div>
+
+            <div class="form-group bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl border border-zinc-200/80 dark:border-zinc-900 shadow-lg flex flex-col gap-2 justify-between transition-all duration-300">
               <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Alanınız / Rolünüz *</label>
               <div class="relative w-full">
-                <select required class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition appearance-none text-zinc-700 dark:text-zinc-300 pr-10">
+                <select name="role" required class="w-full px-3 py-2.5 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition appearance-none text-zinc-700 dark:text-zinc-300 pr-8 shadow-sm">
                   <option value="" disabled selected>Bir alan seçin</option>
                   <option value="gameplay-dev">Gameplay Developer</option>
                   <option value="engine-dev">Engine / Graphics Developer</option>
@@ -58,45 +63,160 @@ const studioSocials = data.studioSocials || [];
                   <option value="game-design">Game Designer</option>
                   <option value="other">Diğer / Genel Yetenek</option>
                 </select>
-                <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-zinc-400">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="absolute inset-y-0 right-2.5 flex items-center pointer-events-none text-zinc-400">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
               </div>
+              <span class="error-msg text-[10px] text-red-500 font-bold tracking-wide uppercase hidden mt-1">// Lütfen bir rol seçin</span>
             </div>
-            <div class="flex flex-col gap-2">
-              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Portfolyo veya GitHub Linki</label>
-              <input type="url" class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition" placeholder="https://github.com/username" />
+
+            <div class="form-group bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl border border-zinc-200/80 dark:border-zinc-900 shadow-lg flex flex-col gap-2 justify-between transition-all duration-300">
+              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Portfolyo / GitHub Linki</label>
+              <input type="url" name="portfolio" class="w-full px-3 py-2.5 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition shadow-sm" placeholder="https://github.com/username" />
+              <span class="error-msg text-[10px] text-red-500 font-bold tracking-wide uppercase hidden mt-1">// Geçerli bir URL adresi girin</span>
             </div>
+
           </div>
 
-          <div class="flex flex-col gap-2">
-            <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Kendinizden Bahsedin (Özet) *</label>
-            <textarea required rows="4" class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition resize-none placeholder-zinc-400" placeholder="Neler yapıyorsunuz, hangi teknolojileri veya sanat disiplinlerini benimsiyorsunuz?"></textarea>
-          </div>
-
-          <div class="flex flex-col gap-2">
+          <div class="form-group w-full md:w-2/5 bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl border border-zinc-200/80 dark:border-zinc-900 shadow-lg flex flex-col gap-2 transition-all duration-300">
             <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Özgeçmiş / CV (PDF) *</label>
-            <div class="relative flex items-center justify-center w-full">
-              <label for="cv-upload" class="flex flex-col items-center justify-center w-full min-h-[8rem] h-auto py-4 border-2 border-zinc-300 dark:border-zinc-800 border-dashed rounded-xl cursor-pointer bg-white dark:bg-zinc-950/40 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/30 transition">
-                <div class="flex flex-col items-center justify-center text-center px-4">
-                  <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-                    <span class="font-bold">Dosya seçmek için tıklayın</span> <span class="hidden sm:inline">veya sürükleyip bırakın</span>
+            <div class="relative flex items-center justify-center w-full flex-grow">
+              <label for="cv-upload" class="flex flex-col items-center justify-center w-full h-full min-h-[9rem] md:min-h-0 py-4 border-2 border-zinc-200 dark:border-zinc-800 border-dashed rounded-lg cursor-pointer bg-white dark:bg-zinc-950/40 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/30 transition shadow-inner">
+                <div id="upload-context" class="flex flex-col items-center justify-center text-center px-4">
+                  <svg id="upload-icon" class="w-5 h-5 text-zinc-400 mb-2 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"></path>
+                  </svg>
+                  <p id="upload-text" class="text-xs text-zinc-500 dark:text-zinc-400 leading-tight font-medium">
+                    <span class="font-bold block text-[11px] sm:text-xs text-zinc-700 dark:text-zinc-300">Dosya seçin</span> 
+                    <span class="hidden lg:inline text-[10px] text-zinc-400">veya sürükleyin</span>
                   </p>
-                  <p class="text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 mt-1">Sadece PDF (Maks. 10MB)</p>
+                  <p id="upload-sub" class="text-[9px] text-zinc-400 dark:text-zinc-500 mt-0.5">PDF (Maks. 10MB)</p>
                 </div>
-                <input id="cv-upload" type="file" accept=".pdf" required class="hidden" />
+                <input id="cv-upload" name="cvfile" type="file" accept=".pdf" required class="hidden" />
               </label>
             </div>
+            <span class="error-msg text-[10px] text-red-500 font-bold tracking-wide uppercase hidden mt-1">// Lütfen CV dosyanızı yükleyin</span>
           </div>
 
-          <button type="submit" class="w-full py-3.5 sm:py-4 bg-zinc-900 dark:bg-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-700 text-white font-bold text-xs tracking-wider uppercase rounded-xl transition shadow-lg mt-4">Başvuruyu Gönder</button>
-        </form>
-      </div>
+        </div>
+
+        <div class="form-group bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl border border-zinc-200/80 dark:border-zinc-900 shadow-lg flex flex-col gap-2 transition-all duration-300">
+          <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Kendinizden Bahsedin (Özet) *</label>
+          <textarea name="bio" required rows="4" class="w-full px-3 py-2 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-lg text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition resize-none placeholder-zinc-400/80 shadow-sm" placeholder="Neler yapıyorsunuz, hangi teknolojileri veya sanat disiplinlerini benimsiyorsunuz?"></textarea>
+          <span class="error-msg text-[10px] text-red-500 font-bold tracking-wide uppercase hidden mt-1">// Lütfen kısa bir özet yazın</span>
+        </div>
+
+        <div id="form-status-alert" class="hidden p-4 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all duration-300"></div>
+
+        <button type="submit" class="w-full py-3.5 sm:py-4 bg-zinc-900 dark:bg-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-700 text-white font-bold text-xs tracking-wider uppercase rounded-xl transition shadow-lg hover:shadow-xl cursor-pointer">
+          Başvuruyu Gönder
+        </button>
+      </form>
     </section>
+
+    <footer class="relative z-20 pb-12 text-center">
+      <div class="flex justify-center gap-6 mb-4">
+        {studioSocials.map((social) => (
+          <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors uppercase tracking-widest">
+            {social.platform}
+          </a>
+        ))}
+      </div>
+      <p class="text-[10px] font-medium text-zinc-400 dark:text-zinc-500 tracking-wider">© {new Date().getFullYear()} 0BIT STUDIO. TÜM HAKLARI SAKLIDIR.</p>
+    </footer>
+
   </main>
 </Layout>
 
 <script>
+  // --- FORM KONTROLLERİ VE ÖZEL VALIDASYON TASARIMI ---
+  const initFormLogic = () => {
+    const form = document.getElementById('careers-form') as HTMLFormElement | null;
+    const fileInput = document.getElementById('cv-upload') as HTMLInputElement | null;
+    const uploadIcon = document.getElementById('upload-icon');
+    const uploadText = document.getElementById('upload-text');
+    const uploadSub = document.getElementById('upload-sub');
+
+    if (!form) return;
+
+    // 1. Dosya Yüklendiğinde Kutunun İçeriğini Güncelleme
+    fileInput?.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.files && target.files.length > 0) {
+        const file = target.files[0];
+        if (uploadIcon && uploadText && uploadSub) {
+          // Başarılı dosya yükleme teması
+          uploadIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />`;
+          uploadIcon.classList.remove('text-zinc-400', 'text-red-400');
+          uploadIcon.classList.add('text-green-500');
+          uploadText.innerHTML = `<span class="text-green-600 dark:text-green-400 font-bold block truncate max-w-[180px]">${file.name}</span>`;
+          uploadSub.textContent = `${(file.size / (1024 * 1024)).toFixed(2)} MB Hazır`;
+        }
+        // Hata durumunu temizle
+        const group = fileInput.closest('.form-group');
+        group?.classList.remove('border-red-500/50', 'dark:border-red-500/30', 'bg-red-50/10');
+        group?.querySelector('.error-msg')?.classList.add('hidden');
+      }
+    });
+
+    // 2. Canlı Input Kontrolü (Kullanıcı yazmaya başladığında hatayı sil)
+    form.querySelectorAll('input, select, textarea').forEach((input) => {
+      input.addEventListener('input', () => {
+        const el = input as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+        if (el.checkValidity()) {
+          const group = el.closest('.form-group');
+          group?.classList.remove('border-red-500/50', 'dark:border-red-500/30', 'bg-red-50/10');
+          group?.querySelector('.error-msg')?.classList.add('hidden');
+        }
+      });
+    });
+
+    // 3. Form Gönderme Esnasında Özel UI Doğrulaması
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isFormValid = true;
+      const statusAlert = document.getElementById('form-status-alert');
+
+      form.querySelectorAll('input, select, textarea').forEach((input) => {
+        const el = input as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+        const group = el.closest('.form-group');
+        const errorMsg = group?.querySelector('.error-msg');
+
+        if (!el.checkValidity()) {
+          isFormValid = false;
+          // Kutuyu siber kırmızı tona büründür
+          group?.classList.add('border-red-500/50', 'dark:border-red-500/30', 'bg-red-50/10');
+          errorMsg?.classList.remove('hidden');
+        } else {
+          group?.classList.remove('border-red-500/50', 'dark:border-red-500/30', 'bg-red-50/10');
+          errorMsg?.classList.add('hidden');
+        }
+      });
+
+      if (statusAlert) {
+        statusAlert.classList.remove('hidden', 'bg-red-50', 'dark:bg-red-950/20', 'text-red-600', 'border-red-500/30', 'bg-green-50', 'dark:bg-green-950/20', 'text-green-600', 'border-green-500/30');
+        
+        if (!isFormValid) {
+          statusAlert.classList.add('bg-red-50', 'dark:bg-red-950/20', 'text-red-600', 'dark:text-red-400', 'border-red-500/30');
+          statusAlert.innerHTML = `// BAŞVURU TAMAMLANAMADI. LÜTFEN KIRMIZI İŞARETLİ ALANLARI KONTROL EDİN.`;
+        } else {
+          // Başarılı Simülasyonu
+          statusAlert.classList.add('bg-green-50', 'dark:bg-green-950/20', 'text-green-600', 'dark:text-green-400', 'border-green-500/30');
+          statusAlert.innerHTML = `// BAŞVURUNUZ BAŞARIYLA ALINDI. EKİBİMİZ SİZİNLE EN KISA SÜREDE İLETİŞİME GEÇECEKTİR.`;
+          form.reset();
+          if (uploadIcon && uploadText && uploadSub) {
+            uploadIcon.classList.remove('text-green-500');
+            uploadIcon.classList.add('text-zinc-400');
+            uploadIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"></path>`;
+            uploadText.innerHTML = `<span class="font-bold block text-[11px] sm:text-xs text-zinc-700 dark:text-zinc-300">Dosya seçin</span><span class="hidden lg:inline text-[10px] text-zinc-400">veya sürükleyin</span>`;
+            uploadSub.textContent = `PDF (Maks. 10MB)`;
+          }
+        }
+      }
+    });
+  };
+
+  // --- CANVAS ARKA PLAN NOKTALARI ---
   const canvas = document.getElementById('interactive-dots-canvas') as HTMLCanvasElement | null;
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -114,12 +234,13 @@ const studioSocials = data.studioSocials || [];
 
       draw() {
         if (!ctx) return;
-        ctx.fillStyle = document.documentElement.classList.contains('dark') ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.07)';
+        ctx.fillStyle = document.documentElement.classList.contains('dark') ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.18)';
         ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fill();
       }
 
       update() {
-        let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
         let distance = Math.hypot(dx, dy);
         if (distance < mouse.radius && distance > 0) {
           let force = (mouse.radius - distance) / mouse.radius;
@@ -157,6 +278,14 @@ const studioSocials = data.studioSocials || [];
 
     init(); animate();
     window.addEventListener('resize', init);
-    document.getElementById('theme-toggle')?.addEventListener('click', () => setTimeout(init, 50));
+    
+    window.dispatchEvent(new Event('theme-changed'));
+    window.addEventListener('theme-changed', () => {
+      setTimeout(init, 60);
+    });
   }
+
+  // Astro sayfa geçişleri için ilklendirme kodlarını çalıştır
+  initFormLogic();
+  document.addEventListener('astro:after-swap', initFormLogic);
 </script>
