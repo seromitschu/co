@@ -38,11 +38,15 @@ const { title } = Astro.props;
 	</head>
 	<body class="bg-white dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500 antialiased m-0 p-0">
 		
+		<div id="premium-scroll-track">
+			<div id="premium-scroll-thumb"></div>
+		</div>
+
 		<slot />
 
 		<script>
-			// Sayfa geçişlerinde temanın kalıcılığını sağlayan script
-			document.addEventListener('astro:after-swap', () => {
+			const initLayoutLogic = () => {
+				// 1. Tema Yönetimi
 				const currentTheme = localStorage.getItem('theme') || 
 					(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 				
@@ -51,7 +55,113 @@ const { title } = Astro.props;
 				} else {
 					document.documentElement.classList.add('dark');
 				}
-			});
+
+				// 2. Momentum & Esneme Tabanlı Scroll Mekanizması
+				const track = document.getElementById('premium-scroll-track');
+				const thumb = document.getElementById('premium-scroll-thumb');
+				
+				let lastScrollY = window.scrollY;
+				let scrollTimeout;
+
+				if (track && thumb) {
+					const updateScroll = () => {
+						const scrollTop = window.scrollY;
+						const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+						
+						if (docHeight <= 0) return;
+
+						// Kaydırma oranı (%)
+						const scrollPercent = (scrollTop / docHeight) * 100;
+						
+						const trackHeight = track.clientHeight;
+						const thumbHeight = thumb.clientHeight;
+						const maxTop = trackHeight - thumbHeight;
+						const currentTop = (scrollPercent / 100) * maxTop;
+
+						// Anlık scroll hızını hesapla (Esneme efekti için)
+						const deltaY = Math.abs(scrollTop - lastScrollY);
+						// Maksimum 1.5 katına kadar dikeyde esneme payı veriyoruz
+						const scaleY = Math.min(1 + deltaY * 0.015, 1.5); 
+						
+						lastScrollY = scrollTop;
+
+						// Çubuğu hem hareket ettiriyoruz hem de hızına göre esnetiyoruz
+						thumb.style.transform = `translateY(${currentTop}px) scaleY(${scaleY})`;
+
+						// Aktiflik sınıfını ekle (Pürüzsüzce parlayarak belirecek)
+						track.classList.add('is-active');
+
+						// Hareket bittiğinde yumuşatılmış sönme zamanlayıcısı
+						clearTimeout(scrollTimeout);
+						scrollTimeout = setTimeout(() => {
+							track.classList.remove('is-active');
+							thumb.style.transform = `translateY(${currentTop}px) scaleY(1)`; // Esnemeyi sıfırla
+						}, 800); // 800ms sonra pürüzsüzce kaybolur
+					};
+
+					window.removeEventListener('scroll', updateScroll);
+					window.addEventListener('scroll', updateScroll, { passive: true });
+					updateScroll();
+				}
+			};
+
+			initLayoutLogic();
+			document.addEventListener('astro:after-swap', initLayoutLogic);
 		</script>
 	</body>
 </html>
+
+<style is:global>
+	/* Standart tarayıcı çubuklarını temizle */
+	html {
+		scrollbar-width: none;
+	}
+	html::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* PREMIUM TRACK ALANI */
+	#premium-scroll-track {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 5px; /* Daha da incelttik, minimalist durması için */
+		height: 100vh;
+		z-index: 9999;
+		background: transparent;
+		pointer-events: none;
+		opacity: 0;
+		/* Sönme efekti lüks animasyon eğrisi (cubic-bezier) ile yapıldı */
+		transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+	}
+
+	#premium-scroll-track.is-active {
+		opacity: 1;
+	}
+
+	/* AKIŞKAN SIVI CIVA / SAF IŞIK EFEKTLİ THUMB */
+	#premium-scroll-thumb {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 65px; /* Şık kısa kapsül */
+		border-radius: 99px;
+		/* Dönüşümün (Esneyip geri toparlanmanın) pürüzsüz akması için elastik geçiş */
+		transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+		will-change: transform;
+		
+		/* Light Mod: Temiz cam parlaması */
+		background: rgba(24, 24, 27, 0.85);
+		box-shadow: 0 4px 12px rgba(24, 24, 27, 0.15);
+	}
+
+	/* DARK MOD: Sitenin asıl ruhunu yansıtan saf beyaz süzülen neon neon parlaması */
+	html.dark #premium-scroll-thumb {
+		background: rgba(255, 255, 255, 0.9);
+		/* Alt ve üst kenarlara soft siber glow veriyoruz, gözü yormayan cinsten */
+		box-shadow: 
+			0 0 15px rgba(255, 255, 255, 0.5),
+			0 0 5px rgba(255, 255, 255, 0.3);
+	}
+</style>
