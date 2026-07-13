@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import data from '../data/data.json';
+
+const studioSocials = data.studioSocials || [];
+---
+
+<Layout title="Kariyer | 0bit Stüdyo">
+  <Navbar />
+
+  <main id="bg-container" class="relative w-full bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 transition-colors duration-500 overflow-hidden tracking-tight min-h-screen">
+    
+    <canvas id="interactive-dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-100"></canvas>
+
+    <section class="relative z-20 pt-32 pb-10 px-4 sm:px-6 max-w-4xl mx-auto text-center md:text-left">
+      <span class="text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-3">// GELECEĞİ BİRLİKTE İNŞA EDELİM</span>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase leading-none text-zinc-900 dark:text-white mb-6">
+        0bıt’TE KARİYER
+      </h1>
+      
+      <div class="space-y-4 text-xs sm:text-base text-zinc-600 dark:text-zinc-400 font-medium max-w-2xl leading-relaxed">
+        <p>
+          0bit'te hiyerarşiden uzak, tamamen üretim ve vizyon odaklı bir ekosistem kuruyoruz. Amacımız sadece oyun yapmak değil; oyuncunun zihninde kalıcı izler bırakacak yeni nesil dijital sanat eserleri üretmek.
+        </p>
+        <p>
+          Eğer sen de sınırları zorlamayı seviyor, oyun mekaniklerine veya dijital sanata farklı bir perspektiften bakıyorsan, aşağıdaki form aracılığıyla bize ulaşabilirsin. Açık bir pozisyon olmasa bile yeteneğe her zaman kapımız açık.
+        </p>
+      </div>
+    </section>
+
+    <section class="relative z-20 pb-24 px-4 sm:px-6 max-w-4xl mx-auto">
+      <div class="bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-900 rounded-2xl p-5 sm:p-10 shadow-xl backdrop-blur-sm">
+        <h3 class="text-base sm:text-xl font-black tracking-tight text-zinc-900 dark:text-white uppercase mb-6 sm:mb-8">// GENEL BAŞVURU FORMU</h3>
+        
+        <form class="space-y-5 sm:space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            <div class="flex flex-col gap-2">
+              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Adınız Soyadınız *</label>
+              <input type="text" required class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition" placeholder="John Doe" />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">E-Posta Adresiniz *</label>
+              <input type="email" required class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition" placeholder="johndoe@example.com" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            <div class="flex flex-col gap-2 relative">
+              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Alanınız / Rolünüz *</label>
+              <div class="relative w-full">
+                <select required class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition appearance-none text-zinc-700 dark:text-zinc-300 pr-10">
+                  <option value="" disabled selected>Bir alan seçin</option>
+                  <option value="gameplay-dev">Gameplay Developer</option>
+                  <option value="engine-dev">Engine / Graphics Developer</option>
+                  <option value="3d-art">3D Artist / Animator</option>
+                  <option value="ui-ux">UI / UX Designer</option>
+                  <option value="game-design">Game Designer</option>
+                  <option value="other">Diğer / Genel Yetenek</option>
+                </select>
+                <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-zinc-400">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Portfolyo veya GitHub Linki</label>
+              <input type="url" class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition" placeholder="https://github.com/username" />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Kendinizden Bahsedin (Özet) *</label>
+            <textarea required rows="4" class="px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 transition resize-none placeholder-zinc-400" placeholder="Neler yapıyorsunuz, hangi teknolojileri veya sanat disiplinlerini benimsiyorsunuz?"></textarea>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Özgeçmiş / CV (PDF) *</label>
+            <div class="relative flex items-center justify-center w-full">
+              <label for="cv-upload" class="flex flex-col items-center justify-center w-full min-h-[8rem] h-auto py-4 border-2 border-zinc-300 dark:border-zinc-800 border-dashed rounded-xl cursor-pointer bg-white dark:bg-zinc-950/40 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/30 transition">
+                <div class="flex flex-col items-center justify-center text-center px-4">
+                  <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+                    <span class="font-bold">Dosya seçmek için tıklayın</span> <span class="hidden sm:inline">veya sürükleyip bırakın</span>
+                  </p>
+                  <p class="text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 mt-1">Sadece PDF (Maks. 10MB)</p>
+                </div>
+                <input id="cv-upload" type="file" accept=".pdf" required class="hidden" />
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 sm:py-4 bg-zinc-900 dark:bg-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-700 text-white font-bold text-xs tracking-wider uppercase rounded-xl transition shadow-lg mt-4">Başvuruyu Gönder</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const canvas = document.getElementById('interactive-dots-canvas') as HTMLCanvasElement | null;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let dots: any[] = [];
+    const mouse = { x: -1000, y: -1000, radius: 110 };
+    const spacing = 28;
+
+    class Dot {
+      x: number; y: number; baseX: number; baseY: number;
+      vx: number = 0; vy: number = 0;
+
+      constructor(x: number, y: number) {
+        this.x = x; this.y = y; this.baseX = x; this.baseY = y;
+      }
+
+      draw() {
+        if (!ctx) return;
+        ctx.fillStyle = document.documentElement.classList.contains('dark') ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.07)';
+        ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fill();
+      }
+
+      update() {
+        let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+        let distance = Math.hypot(dx, dy);
+        if (distance < mouse.radius && distance > 0) {
+          let force = (mouse.radius - distance) / mouse.radius;
+          this.vx -= (dx / distance) * force * 4; this.vy -= (dy / distance) * force * 4;
+        }
+        this.vx += (this.baseX - this.x) * 0.08; this.vy += (this.baseY - this.y) * 0.08;
+        this.vx *= 0.85; this.vy *= 0.85;
+        this.x += this.vx; this.y += this.vy;
+      }
+    }
+
+    const init = () => {
+      const parent = canvas.parentElement; if (!parent) return;
+      canvas.width = parent.clientWidth; canvas.height = parent.clientHeight;
+      dots = [];
+      for (let x = spacing / 2; x < canvas.width; x += spacing) {
+        for (let y = spacing / 2; y < canvas.height; y += spacing) {
+          dots.push(new Dot(x, y));
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top;
+    });
+    window.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
+
+    const animate = () => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < dots.length; i++) { dots[i].update(); dots[i].draw(); }
+      requestAnimationFrame(animate);
+    };
+
+    init(); animate();
+    window.addEventListener('resize', init);
+    document.getElementById('theme-toggle')?.addEventListener('click', () => setTimeout(init, 50));
+  }
+</script>

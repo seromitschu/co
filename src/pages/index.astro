@@ -1,0 +1,219 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import data from '../data/data.json';
+
+const studioSocials = data.studioSocials || [];
+const gamesData = data.games || [];
+const teamData = data.team || [];
+
+const extendedTeam = [...teamData, ...teamData, ...teamData, ...teamData];
+---
+
+<Layout title="0bit Stüdyo | Resmi Web Sitesi">
+  <Navbar />
+
+  <main id="bg-container" class="relative w-full bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 transition-colors duration-500 overflow-hidden tracking-tight">
+    
+    <canvas id="interactive-dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-100"></canvas>
+
+    <section class="relative h-screen w-full overflow-hidden flex flex-col justify-end items-start bg-black m-0 p-0 z-20 pb-16 sm:pb-24 px-6 md:px-12">
+      <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60 dark:opacity-40">
+          <source src="/videos/company-showreel.webm" type="video/webm" />
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-tr from-zinc-950 via-zinc-950/45 to-transparent dark:from-zinc-950 dark:via-zinc-950/50 dark:to-transparent z-10"></div>
+      </div>
+
+      <div class="relative z-20 max-w-2xl text-left flex flex-col items-start">
+        <span class="text-[9px] sm:text-xs font-black tracking-[0.3em] text-zinc-400 uppercase mb-3 block">// OYUNUN ÖTESİNDE, GELECEĞİN İÇİNDE</span>
+        <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter uppercase text-white leading-none mb-4 select-none filter drop-shadow-md break-words">
+          YENİ NESİL <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-zinc-300 to-zinc-500 dark:from-white dark:via-zinc-400 dark:to-zinc-600">DİJİTAL DENEYİMLER</span>
+        </h1>
+        <p class="text-xs sm:text-sm font-medium text-zinc-300 dark:text-zinc-400 max-w-md leading-relaxed mb-6">
+          0bit, sınırları zorlayan bağımsız oyunlar ve interaktif dünyalar inşa eden yaratıcı bir teknoloji ve sanat kolektifidir.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#games" class="px-4.5 py-2.5 bg-white text-black font-bold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-zinc-200 transition shadow-lg">Projelerimiz</a>
+          <a href="/careers" class="px-4.5 py-2.5 bg-zinc-900/80 text-white font-bold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-zinc-800 border border-zinc-800 transition backdrop-blur-sm shadow-lg">Ekibe Katıl</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="games" class="relative z-20 py-20 sm:py-32 px-4 sm:px-6 max-w-6xl mx-auto scroll-mt-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
+        <div>
+          <span class="text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-2">// ÜRETİMLERİMİZ</span>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white leading-none">GELİŞTİRİLEN PROJELER</h2>
+        </div>
+        <p class="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 max-w-sm md:text-right">Kendi özgün motorlarımız ve modern teknolojilerle şekillendirdiğimiz bağımsız yapımlar.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {gamesData.map((game) => (
+          <div class="group relative flex flex-col bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-900 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:border-zinc-300 dark:hover:border-zinc-800">
+            <div class="relative aspect-[16/10] overflow-hidden bg-zinc-900">
+              <img src={game.coverImage} alt={game.title} class="w-full h-full object-cover opacity-90 transition-transform duration-700 scale-100 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80 z-10"></div>
+              <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-20 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-white/95 text-black font-black text-[9px] tracking-widest uppercase rounded-md shadow-sm">{game.genre}</span>
+                <span class="px-2.5 py-1 bg-zinc-900/90 text-zinc-300 border border-zinc-800 font-bold text-[9px] tracking-widest uppercase rounded-md backdrop-blur-sm shadow-sm">{game.status}</span>
+              </div>
+            </div>
+            <div class="p-5 sm:p-8 flex flex-col flex-grow justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3 gap-2">
+                  <h3 class="text-lg sm:text-2xl font-black tracking-tight text-zinc-900 dark:text-white uppercase truncate">{game.title}</h3>
+                  <span class="text-[9px] sm:text-[10px] font-bold font-mono text-zinc-400 dark:text-zinc-500 bg-zinc-200/60 dark:bg-zinc-800/50 px-2 py-0.5 rounded shrink-0">{game.version}</span>
+                </div>
+                <p class="text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm font-medium leading-relaxed mb-6">{game.description}</p>
+              </div>
+              <button class="w-full py-3 bg-zinc-900 dark:bg-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-700 text-white font-bold text-xs tracking-wider uppercase rounded-xl transition shadow-md">Detayları İncele</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="team" class="relative z-20 py-20 sm:py-24 border-t border-b border-zinc-100 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-10 text-center md:text-left">
+        <span class="text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-2">// VİZYONERLER</span>
+        <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white">ÇEKİRDEK EKİP</h2>
+      </div>
+
+      <div class="relative w-full flex overflow-x-hidden group-marquee mask-gradient">
+        <div class="animate-marquee flex gap-4 sm:gap-6 whitespace-nowrap py-4 pr-4 sm:pr-6">
+          {extendedTeam.map((member, index) => (
+            <div key={`member-${member.nickname}-${index}`} class="inline-flex flex-col w-[260px] sm:w-[320px] bg-white dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-900/80 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300 select-none whitespace-normal justify-between">
+              <div>
+                <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <img src={`https://api.dicebear.com/9.x/bottts/svg?seed=${member.nickname || index}`} alt={member.name} class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800" loading="lazy" />
+                  <div>
+                    <h4 class="text-xs sm:text-base font-black tracking-tight text-zinc-900 dark:text-white">{member.name}</h4>
+                    <p class="text-[10px] sm:text-[11px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{member.role}</p>
+                  </div>
+                </div>
+                <p class="text-[11px] sm:text-xs font-medium text-zinc-500 dark:text-zinc-400 italic leading-relaxed mb-4">"{member.quote}"</p>
+              </div>
+
+              {member.socials && member.socials.length > 0 && (
+                <div class="flex gap-2 pt-2 border-t border-zinc-100 dark:border-zinc-800/60 mt-auto">
+                  {member.socials.map((social) => (
+                    <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white rounded transition-colors uppercase tracking-tight">
+                      {social.platform}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative z-20 py-20 sm:py-32 px-4 sm:px-6 max-w-4xl mx-auto text-center">
+      <span class="text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-3">// TOPLULUK</span>
+      <h2 class="text-3xl sm:text-6xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white leading-none mb-6">BİZE KATILIN</h2>
+      <p class="text-xs sm:text-base font-medium text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed mb-10">
+        Geliştirme süreçlerimizi yakından takip etmek, alfa testlerine katılmak ve ekiple doğrudan iletişim kurmak için topluluğumuza dahil olun.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+        {studioSocials.map((social) => (
+          <a href={social.url} target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-bold text-xs tracking-wider uppercase rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition shadow-sm">
+            {social.platform}
+          </a>
+        ))}
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+  .group-marquee:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .mask-gradient {
+    mask-image: linear-gradient(to right, transparent, white 8%, white 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, white 8%, white 92%, transparent);
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('interactive-dots-canvas') as HTMLCanvasElement | null;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let dots: any[] = [];
+    const mouse = { x: -1000, y: -1000, radius: 110 };
+    const spacing = 28;
+
+    class Dot {
+      x: number; y: number; baseX: number; baseY: number;
+      vx: number = 0; vy: number = 0;
+
+      constructor(x: number, y: number) {
+        this.x = x; this.y = y; this.baseX = x; this.baseY = y;
+      }
+
+      draw() {
+        if (!ctx) return;
+        // BEYAZ MODDA NOKTALARIN GÖRÜNÜRLÜĞÜ ARTIRILDI (rgba 0.07'den 0.18'e çekildi)
+        ctx.fillStyle = document.documentElement.classList.contains('dark') ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.18)';
+        ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fill();
+      }
+
+      update() {
+        let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+        let distance = Math.hypot(dx, dy);
+        if (distance < mouse.radius && distance > 0) {
+          let force = (mouse.radius - distance) / mouse.radius;
+          this.vx -= (dx / distance) * force * 4; this.vy -= (dy / distance) * force * 4;
+        }
+        this.vx += (this.baseX - this.x) * 0.08; this.vy += (this.baseY - this.y) * 0.08;
+        this.vx *= 0.85; this.vy *= 0.85;
+        this.x += this.vx; this.y += this.vy;
+      }
+    }
+
+    const init = () => {
+      const parent = canvas.parentElement; if (!parent) return;
+      canvas.width = parent.clientWidth; canvas.height = parent.clientHeight;
+      dots = [];
+      for (let x = spacing / 2; x < canvas.width; x += spacing) {
+        for (let y = spacing / 2; y < canvas.height; y += spacing) {
+          dots.push(new Dot(x, y));
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top;
+    });
+    window.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
+
+    const animate = () => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < dots.length; i++) { dots[i].update(); dots[i].draw(); }
+      requestAnimationFrame(animate);
+    };
+
+    init(); animate();
+    window.addEventListener('resize', init);
+    
+    // Tema değiştiğinde noktaların rengini anlık olarak güncellemek için tetikleyici
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      setTimeout(init, 50);
+    });
+  }
+</script>

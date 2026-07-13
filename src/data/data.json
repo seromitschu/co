@@ -1,0 +1,50 @@
+{
+  "studioSocials": [
+    { "platform": "X", "url": "https://x.com/0bitstudio" },
+    { "platform": "Instagram", "url": "https://instagram.com/0bitstudio" },
+    { "platform": "Discord", "url": "https://discord.gg/0bitstudio" }
+  ],
+  "games": [
+    {
+      "title": "HADES",
+      "coverImage": "https://cdn.displate.com/artwork/857x1200/2025-09-20/6baab911-aeb5-4bee-97a4-a87d840b9eba.jpg",
+      "genre": "ROGUE-LIKE",
+      "status": "AKTİF GELİŞTİRME",
+      "version": "Alpha Build v0.4",
+      "description": "Yer altı dünyasının ölümsüz prensine meydan okuyun, Olimpos'un güçlerini arkanıza alarak ölülerin tanrısının pençelerinden kaçın. Her kaçış denemesinde hikayenin yeni bir perdesini aralayan deneyim."
+    },
+        {
+      "title": "HADES II",
+      "coverImage": "https://cdn.displate.com/artwork/857x1200/2025-09-20/6baab911-aeb5-4bee-97a4-a87d840b9eba.jpg",
+      "genre": "ROGUE-LIKE",
+      "status": "AKTİF GELİŞTİRME",
+      "version": "Alpha Build v0.4",
+      "description": "Yer altı dünyasının ölümsüz prensine meydan okuyun, Olimpos'un güçlerini arkanıza alarak ölülerin tanrısının pençelerinden kaçın. Her kaçış denemesinde hikayenin yeni bir perdesini aralayan deneyim."
+    }
+  ],
+  "team": [
+    {
+      "name": "Can Yılmaz",
+      "nickname": "canyilmaz",
+      "role": "Kurucu & Geliştirici",
+      "avatar": "/images/avatars/cartoon-can.png",
+      "quote": "Kod sadece araçtır, asıl olan oyuncunun hissettiği o derin histir.",
+      "socials": [
+        { "platform": "LinkedIn", "url": "https://linkedin.com/in/username" },
+        { "platform": "GitHub", "url": "https://github.com/username" },
+        { "platform": "X", "url": "https://x.com/username" }
+      ]
+    },
+    {
+      "name": "Ece Demir",
+      "nickname": "ecedemir",
+      "role": "Sanat Yönetmeni",
+      "avatar": "/images/avatars/cartoon-ece.png",
+      "quote": "Görsel dünya, hikayenin sessizce anlatılan en güçlü kısmıdır.",
+      "socials": [
+        { "platform": "ArtStation", "url": "https://artstation.com/username" },
+        { "platform": "LinkedIn", "url": "https://linkedin.com/in/username" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Oyun Stüdyosu Resmi Web Sitesi" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
+				}
+				return 'light';
+			})();
+		
+			if (theme === 'light') {
+				document.documentElement.classList.remove('dark');
+			} else {
+				document.documentElement.classList.add('dark');
+			}
+		</script>
+	</head>
+	<body class="bg-white dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500 antialiased m-0 p-0">
+		
+		<slot />
+
+		<script>
+			// Sayfa geçişlerinde temanın kalıcılığını sağlayan script
+			document.addEventListener('astro:after-swap', () => {
+				const currentTheme = localStorage.getItem('theme') || 
+					(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				
+				if (currentTheme === 'light') {
+					document.documentElement.classList.remove('dark');
+				} else {
+					document.documentElement.classList.add('dark');
+				}
+			});
+		</script>
+	</body>
+</html>
