@@ -6,25 +6,28 @@ import data from '../data/data.json';
 const studioSocials = data.studioSocials || [];
 ---
 
-<Layout title="Kariyer | 0bit Stüdyo">
+<Layout title="72bit Stüdyo">
   <Navbar />
 
   <main id="bg-container" class="relative w-full bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 transition-colors duration-500 overflow-hidden tracking-tight min-h-screen">
     
-    <canvas id="interactive-dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-100"></canvas>
+    {/* Arka Plan Etkileşimli Noktaları */}
+    <canvas id="interactive-dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-80"></canvas>
 
     <section class="relative z-20 pt-32 pb-10 px-4 sm:px-6 max-w-4xl mx-auto text-center md:text-left">
       <span class="text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase text-zinc-400 dark:text-zinc-500 block mb-3">// GELECEĞİ BİRLİKTE INŞA EDELİM</span>
       <h1 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase leading-none text-zinc-900 dark:text-white mb-6">
-        0bıt’TE KARİYER
+        72BIT’TE KARİYER
       </h1>
       
       <div class="space-y-4 text-xs sm:text-base text-zinc-600 dark:text-zinc-400 font-medium max-w-2xl leading-relaxed">
         <p>
-          0bit'te hiyerarşiden uzak, tamamen üretim ve vizyon odaklı bir ekosistem kuruyoruz. Amacımız sadece oyun yapmak değil; oyuncunun zihninde kalıcı izler bırakacak yeni nesil dijital sanat eserleri üretmek.
+          72bit'te hiyerarşiden uzak, tamamen üretim ve vizyon odaklı bir ekosistem kuruyoruz.
+          Amacımız sadece oyun yapmak değil; oyuncunun zihninde kalıcı izler bırakacak yeni nesil dijital sanat eserleri üretmek.
         </p>
         <p>
-          Eğer sen de sınırları zorlamayı seviyor, oyun mekaniklerine veya dijital sanata farklı bir perspektiften bakıyorsan, aşağıdaki form aracılığıyla bize ulaşabilirsin. Açık bir pozisyon olmasa bile yeteneğe her zaman kapımız açık.
+          Eğer sen de sınırları zorlamayı seviyor, oyun mekaniklerine veya dijital sanata farklı bir perspektiften bakıyorsan, aşağıdaki form aracılığıyla bize ulaşabilirsin.
+          Açık bir pozisyon olmasa bile yeteneğe her zaman kapımız açık.
         </p>
       </div>
     </section>
@@ -114,19 +117,13 @@ const studioSocials = data.studioSocials || [];
       </form>
     </section>
 
-    <footer class="relative z-20 pb-12 text-center">
-      <div class="flex justify-center gap-6 mb-4">
-        {studioSocials.map((social) => (
-          <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors uppercase tracking-widest">
-            {social.platform}
-          </a>
-        ))}
-      </div>
-      <p class="text-[10px] font-medium text-zinc-400 dark:text-zinc-500 tracking-wider">© {new Date().getFullYear()} 0BIT STUDIO. TÜM HAKLARI SAKLIDIR.</p>
-    </footer>
-
   </main>
 </Layout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 
 <script>
   // --- FORM KONTROLLERİ VE ÖZEL VALIDASYON TASARIMI ---
@@ -139,27 +136,23 @@ const studioSocials = data.studioSocials || [];
 
     if (!form) return;
 
-    // 1. Dosya Yüklendiğinde Kutunun İçeriğini Güncelleme
     fileInput?.addEventListener('change', (e) => {
       const target = e.target as HTMLInputElement;
       if (target.files && target.files.length > 0) {
         const file = target.files[0];
         if (uploadIcon && uploadText && uploadSub) {
-          // Başarılı dosya yükleme teması
           uploadIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />`;
           uploadIcon.classList.remove('text-zinc-400', 'text-red-400');
           uploadIcon.classList.add('text-green-500');
           uploadText.innerHTML = `<span class="text-green-600 dark:text-green-400 font-bold block truncate max-w-[180px]">${file.name}</span>`;
           uploadSub.textContent = `${(file.size / (1024 * 1024)).toFixed(2)} MB Hazır`;
         }
-        // Hata durumunu temizle
         const group = fileInput.closest('.form-group');
         group?.classList.remove('border-red-500/50', 'dark:border-red-500/30', 'bg-red-50/10');
         group?.querySelector('.error-msg')?.classList.add('hidden');
       }
     });
-
-    // 2. Canlı Input Kontrolü (Kullanıcı yazmaya başladığında hatayı sil)
+    
     form.querySelectorAll('input, select, textarea').forEach((input) => {
       input.addEventListener('input', () => {
         const el = input as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
@@ -171,7 +164,6 @@ const studioSocials = data.studioSocials || [];
       });
     });
 
-    // 3. Form Gönderme Esnasında Özel UI Doğrulaması
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       let isFormValid = true;
@@ -184,7 +176,6 @@ const studioSocials = data.studioSocials || [];
 
         if (!el.checkValidity()) {
           isFormValid = false;
-          // Kutuyu siber kırmızı tona büründür
           group?.classList.add('border-red-500/50', 'dark:border-red-500/30', 'bg-red-50/10');
           errorMsg?.classList.remove('hidden');
         } else {
@@ -195,12 +186,10 @@ const studioSocials = data.studioSocials || [];
 
       if (statusAlert) {
         statusAlert.classList.remove('hidden', 'bg-red-50', 'dark:bg-red-950/20', 'text-red-600', 'border-red-500/30', 'bg-green-50', 'dark:bg-green-950/20', 'text-green-600', 'border-green-500/30');
-        
         if (!isFormValid) {
           statusAlert.classList.add('bg-red-50', 'dark:bg-red-950/20', 'text-red-600', 'dark:text-red-400', 'border-red-500/30');
           statusAlert.innerHTML = `// BAŞVURU TAMAMLANAMADI. LÜTFEN KIRMIZI İŞARETLİ ALANLARI KONTROL EDİN.`;
         } else {
-          // Başarılı Simülasyonu
           statusAlert.classList.add('bg-green-50', 'dark:bg-green-950/20', 'text-green-600', 'dark:text-green-400', 'border-green-500/30');
           statusAlert.innerHTML = `// BAŞVURUNUZ BAŞARIYLA ALINDI. EKİBİMİZ SİZİNLE EN KISA SÜREDE İLETİŞİME GEÇECEKTİR.`;
           form.reset();
@@ -215,13 +204,13 @@ const studioSocials = data.studioSocials || [];
       }
     });
   };
-
+  
   // --- CANVAS ARKA PLAN NOKTALARI ---
   const canvas = document.getElementById('interactive-dots-canvas') as HTMLCanvasElement | null;
   if (canvas) {
     const ctx = canvas.getContext('2d');
     let dots: any[] = [];
-    const mouse = { x: -1000, y: -1000, radius: 110 };
+    const mouse = { x: -1000, y: -1000, radius: 115 };
     const spacing = 28;
 
     class Dot {
@@ -234,17 +223,23 @@ const studioSocials = data.studioSocials || [];
 
       draw() {
         if (!ctx) return;
-        ctx.fillStyle = document.documentElement.classList.contains('dark') ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.18)';
-        ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fill();
+        
+        ctx.fillStyle = document.documentElement.classList.contains('dark') 
+          ? 'rgba(255, 255, 255, 0.1)' 
+          : 'rgba(71, 85, 105, 0.35)';
+        
+        ctx.beginPath(); 
+        const radius = document.documentElement.classList.contains('dark') ? 1.5 : 1.8;
+        ctx.arc(this.x, this.y, radius, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
+        let dx = mouse.x - this.x; let dy = mouse.y - this.y;
         let distance = Math.hypot(dx, dy);
         if (distance < mouse.radius && distance > 0) {
           let force = (mouse.radius - distance) / mouse.radius;
-          this.vx -= (dx / distance) * force * 4; this.vy -= (dy / distance) * force * 4;
+          this.vx -= (dx / distance) * force * 4.5; this.vy -= (dy / distance) * force * 4.5;
         }
         this.vx += (this.baseX - this.x) * 0.08; this.vy += (this.baseY - this.y) * 0.08;
         this.vx *= 0.85; this.vy *= 0.85;
@@ -279,13 +274,11 @@ const studioSocials = data.studioSocials || [];
     init(); animate();
     window.addEventListener('resize', init);
     
-    window.dispatchEvent(new Event('theme-changed'));
     window.addEventListener('theme-changed', () => {
-      setTimeout(init, 60);
+      setTimeout(init, 50);
     });
   }
 
-  // Astro sayfa geçişleri için ilklendirme kodlarını çalıştır
   initFormLogic();
   document.addEventListener('astro:after-swap', initFormLogic);
 </script>
